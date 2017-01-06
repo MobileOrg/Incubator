@@ -33,7 +33,8 @@ class Swift_Org_PoCTests: XCTestCase {
 
     // now parse the todo list
     if let url = bundle.url(forResource: "TodoList", withExtension: "org") {
-      OrgFileParser.parse(url, in: moc)
+      let orgParser = OrgFileParser(withManagedObjectContect: moc)
+      orgParser.parse(url)
     } else {
       XCTFail()
     }
@@ -42,8 +43,8 @@ class Swift_Org_PoCTests: XCTestCase {
       // Test if there are items stored
       let fetchRequest = NSFetchRequest<Item>(entityName: "Item")
       let items = try moc!.fetch(fetchRequest)
-      XCTAssertEqual(items.count, 3)
-      XCTAssertEqual(items.first?.heading, "Heading 2") // Can fail 🦄
+      XCTAssertEqual(items.count, 12)
+      //      XCTAssertEqual(items.first?.heading, "Heading 2") // Can fail 🦄
     } catch _ { XCTFail() }
   }
 

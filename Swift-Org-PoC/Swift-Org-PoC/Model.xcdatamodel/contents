@@ -13,7 +13,7 @@
         <relationship name="todostate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TodoState" inverseName="items" inverseEntity="TodoState" syncable="YES"/>
     </entity>
     <entity name="LogbookItem" representedClassName="LogbookItem" syncable="YES" codeGenerationType="class">
-        <attribute name="state" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="log" inverseEntity="Item" syncable="YES"/>
     </entity>
     <entity name="Priority" representedClassName="Priority" syncable="YES" codeGenerationType="class">
@@ -30,15 +30,15 @@
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="tags" inverseEntity="Item" syncable="YES"/>
     </entity>
     <entity name="TodoState" representedClassName="TodoState" syncable="YES" codeGenerationType="class">
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="todostate" inverseEntity="Item" syncable="YES"/>
     </entity>
     <elements>
         <element name="Item" positionX="-335" positionY="-174" width="128" height="193"/>
+        <element name="LogbookItem" positionX="-135" positionY="-111" width="128" height="73"/>
+        <element name="Priority" positionX="-506" positionY="-252" width="128" height="90"/>
         <element name="Property" positionX="-522" positionY="-126" width="128" height="75"/>
         <element name="Tag" positionX="-522" positionY="-18" width="128" height="75"/>
-        <element name="TodoState" positionX="-513" positionY="105" width="128" height="75"/>
-        <element name="Priority" positionX="-506" positionY="-252" width="128" height="90"/>
-        <element name="LogbookItem" positionX="-135" positionY="-111" width="128" height="75"/>
+        <element name="TodoState" positionX="-513" positionY="105" width="128" height="73"/>
     </elements>
 </model>

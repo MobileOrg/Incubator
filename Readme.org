@@ -1,0 +1,9 @@
+* MobileOrg Incubator
+
+A place to try out ideas.
+
+** Sub-projects
+   Currently active sub-projects are:
+
+   - [[file+sys:Swift-Org-PoC][SwiftOrg Incubator]]
+     Here we're trying out a new storage model and how we could integrate [[https://github.com/xiaoxinghu/swift-org][SwiftOrg]] into our project.

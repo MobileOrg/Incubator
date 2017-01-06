@@ -25,34 +25,140 @@ import SwiftOrg
 
 // Parse the file
 struct OrgFileParser {
-  static func parse(_ file: URL, in moc: NSManagedObjectContext) {
+
+  let moc: NSManagedObjectContext!
+
+  init(withManagedObjectContect moc: NSManagedObjectContext) {
+    self.moc = moc
+  }
+
+  func parse(_ file: URL) {
     do {
       let text = try String(contentsOf: file, encoding: String.Encoding.utf8)
       let parser = OrgParser()
       let doc = try! parser.parse(content: text)
 
+      self.parse(document: doc)
       print(text)
-
-      let entity =  NSEntityDescription.entity(forEntityName: "Item", in: moc)
-      let item = NSManagedObject(entity: entity!, insertInto: moc) as! Item
-
-      for node in doc.content as! [Section] {
-        let item = NSManagedObject(entity: entity!, insertInto: moc) as! Item
-        item.heading = node.title
-      }
-
-      //save the object
-      do {
-        try moc.save()
-        print("saved!")
-      } catch let error as NSError  {
-        print("Could not save \(error), \(error.userInfo)")
-      } catch {
-
-      }
-
 
     }
     catch {/* error handling here */}
+  }
+
+
+  func parse(document: OrgDocument) {
+
+    // Get default TodoStates
+    let entity = NSEntityDescription.entity(forEntityName: "TodoState", in: moc)
+    if document.defaultTodos.count == 2,
+      let todoStates = document.defaultTodos.first,
+      let doneStates = document.defaultTodos.last {
+
+      // FIXME: Could make sense to diverse todo and done states in model
+      for state in todoStates {
+        let todoState = NSManagedObject(entity: entity!, insertInto: moc) as! TodoState
+        todoState.title = state
+      }
+      for state in doneStates {
+        let doneState =  NSManagedObject(entity: entity!, insertInto: moc) as! TodoState
+        doneState.title = state
+      }
+    }
+
+    // Get document related TodoStates
+    // FIXME: these should be stored separately!
+    if document.todos.count == 2,
+      let todoStates = document.todos.first,
+      let doneStates = document.todos.last {
+
+      // FIXME: Could make sense to diverse todo and done states in model
+      for state in todoStates {
+        let todoState = NSManagedObject(entity: entity!, insertInto: moc) as! TodoState
+        todoState.title = state
+      }
+      for state in doneStates {
+        let doneState =  NSManagedObject(entity: entity!, insertInto: moc) as! TodoState
+        doneState.title = state
+      }
+    }
+
+    // parse all items of document
+    for node in document.content as! [Section] {
+      parse(section: node, parent: nil)
+    }
+
+    //save the whole object context
+    do {
+      try moc.save()
+      print("saved!")
+    } catch let error as NSError  {
+      print("Could not save \(error), \(error.userInfo)")
+    } catch {
+
+    }
+  }
+
+
+  /// Parse Section
+  /// Section could be of type Section or Paragraph
+  /// - Parameters:
+  ///   - section: section to parse
+  ///   - parent: parent item of section
+  func parse(section: Section, parent: Item?) {
+    let entity = NSEntityDescription.entity(forEntityName: "Item", in: moc)
+    let item = NSManagedObject(entity: entity!, insertInto: moc) as! Item
+
+
+    // Set Todo Keyword if any
+    if let todoState = section.keyword {
+      let fetchRequest = NSFetchRequest<TodoState>(entityName: "TodoState")
+      fetchRequest.predicate = NSPredicate (format: "title == %@", todoState)
+      do {
+        let todoKeywords = try moc!.fetch(fetchRequest)
+        if let state = todoKeywords.first {
+          item.todostate = state
+        }
+      } catch { }
+    }
+
+
+    // Link to parent
+    item.parent = parent
+
+    // Get attributes
+    item.heading = section.title
+
+    // Drawer
+    for section in section.content where section is Drawer {
+      if let drawer = section as? Drawer {
+
+        // Logbook Entries
+        // FIXME: Logbook Entries should be stored as FromDate - ToDate in model for date logs
+        if drawer.name == "LOGBOOK" {
+          for log in drawer.content {
+            let entity = NSEntityDescription.entity(forEntityName: "LogbookItem", in: moc)
+            let logEntry = NSManagedObject(entity: entity!, insertInto: moc) as! LogbookItem
+            logEntry.state = log
+            logEntry.item = item
+          }
+        }
+      }
+    }
+
+
+    // Bodytext is delivered as seperate paragraphs
+    for section in section.content where section is Paragraph {
+      if let paragraph = section as? Paragraph {
+        for line in paragraph.lines {
+          item.body?.append(line)
+        }
+        item.body?.append("\n")
+      }
+    }
+
+    // Parsing subsection(s)
+    for section in section.content where section is Section {
+      parse(section: section as! Section, parent: item)
+    }
   }
 }

@@ -4,7 +4,7 @@
 * Heading 1
 ** Heading 1.1
 
-*** Heading 1.1.1
+*** [#B] Heading 1.1.1                                                 :tag1:
 Meat thing and which is fourth their a make. Their of creature. Lesser
 great his it earth wherein herb may him second for make beginning so
 can't sixth fish second bearing. Brought. Don't every years to. Grass,
@@ -17,9 +17,8 @@ them. Two won't sixth meat the. Above first doesn't.
 
 In morning. Fifth whose after. Under over. Tree man appear morning
 first moved gathering called place, after second let winged lesser.
-**** TODO on level 1.1.1.1
-
-**** DONE on level 1.1.1.2
+**** TODO [#C] on level 1.1.1.1                         :tag1:tag2:tag3:tag4: 
+**** DONE on level 1.1.1.2                                        :tag1:tag2:
 
 **** WORKS-FOR-ME on Level 1.1.1.3
      :LOGBOOK:
@@ -29,12 +28,41 @@ first moved gathering called place, after second let winged lesser.
 
 **** IN-PROGRESS on Level 1.1.1.4
 
-**** WAITING on Level 1.1.1.5
+**** WAITING [#A] on Level 1.1.1.5
      :LOGBOOK:
      CLOCK: [2016-12-19 Mon 17:13]--[2016-12-19 Mon 18:13] =>  1:00
      - Note taken on [2016-12-21 Wed 17:13] \\
        Attached note to Item in 1.1.1.5
      :END:
+
+
+** TODO Habit at Level 1.2
+   SCHEDULED: <2016-12-16 Fri .+1d>
+   :PROPERTIES:
+   :STYLE:    habit
+   :ID:       1CE9B338-5E56-4BD3-A35E-21FDE56D3A03
+   :END:
+   :LOGBOOK:  
+   - Note taken on [2017-01-04 Wed 18:46] \\
+     Note for habit
+     
+     Third line of note
+   - State "DONE"       from "TODO"       [2016-12-15 Thu 07:45]
+   - State "DONE"       from "TODO"       [2016-12-15 Thu 07:45]
+   - State "DONE"       from "TODO"       [2016-12-13 Tue 20:19]
+   - State "DONE"       from "TODO"       [2016-12-08 Thu 16:18]
+   - State "DONE"       from "TODO"       [2016-12-06 Tue 23:08]
+   - State "DONE"       from "TODO"       [2016-12-05 Mon 22:10]
+   - State "DONE"       from "TODO"       [2016-12-05 Mon 09:41]
+   - State "DONE"       from "TODO"       [2016-12-04 Sun 10:45]
+   - State "DONE"       from "TODO"       [2016-02-01 Mon 19:37]
+   - State "DONE"       from "TODO"       [2015-09-24 Thu 23:59]
+   - State "DONE"       from "TODO"       [2015-08-18 Tue 23:59]
+   - State "DONE"       from "TODO"       [2015-08-15 Sat 23:59]
+   - State "DONE"       from "TODO"       [2015-08-14 Fri 18:07]
+   - State "DONE"       from "TODO"       [2015-08-13 Thu 23:59]
+   :END:      
+
 
 * Heading 2
 
@@ -58,3 +86,4 @@ thing green also said which.
 Herb you're had, tree deep gathering days. Also. God
 us. Multiply. Replenish living, very night our were. Spirit moved
 grass. One signs. Second. Moving, face of replenish. Years.
+
