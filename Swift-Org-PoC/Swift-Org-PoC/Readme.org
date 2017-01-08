@@ -1,0 +1,24 @@
+* Integration of SwiftOrg & New Core Data Model
+
+** Integration of SwiftOrg
+
+   [[https://github.com/xiaoxinghu/swift-org][SwiftOrg]] is a parser for Org-mode files.
+   
+   Usage of [[https://github.com/xiaoxinghu/swift-org][SwiftOrg]] is pretty straightforward. As it is not connected
+   to a persistence layer it is necessary to wrap it into an
+   additional parser. The additional wrapping makes it easy to extract
+   currently unsupported keywords or markups like [[xiaoxinghu/swift-org#4][SCHEDULED]] or only
+   partially supported items like [[xiaoxinghu/swift-org#3][Notes]].
+
+   As [[https://github.com/xiaoxinghu/swift-org][SwiftOrg]] is actively developed I would recommend to use it as
+   the parser for a future version of MobileOrg.
+
+** New Core Data Model
+
+   To allow a more dynamic UI a seems necessary. 
+   This is the model which was used to play with SwiftOrg. A
+   another PoC with different Views on the data has to be established
+   to get proper results.
+
+   [[./Images/Model_xcdatamodel.png]]
+
