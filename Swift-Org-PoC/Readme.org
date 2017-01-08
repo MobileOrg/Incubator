@@ -7,8 +7,8 @@
    Usage of [[https://github.com/xiaoxinghu/swift-org][SwiftOrg]] is pretty straightforward. As it is not connected
    to a persistence layer it is necessary to wrap it into an
    additional parser. The additional wrapping makes it easy to extract
-   currently unsupported keywords or markups like [[xiaoxinghu/swift-org#4][SCHEDULED]] or only
-   partially supported items like [[xiaoxinghu/swift-org#3][Notes]].
+   currently unsupported keywords or markups like SCHEDULD (xiaoxinghu/swift-org#4) or only
+   partially supported items like notes (xiaoxinghu/swift-org#3).
 
    As [[https://github.com/xiaoxinghu/swift-org][SwiftOrg]] is actively developed I would recommend to use it as
    the parser for a future version of MobileOrg.
