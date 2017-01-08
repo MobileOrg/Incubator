@@ -39,7 +39,6 @@ struct OrgFileParser {
       let doc = try! parser.parse(content: text)
 
       self.parse(document: doc)
-      print(text)
 
     }
     catch {/* error handling here */}

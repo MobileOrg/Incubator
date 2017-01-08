@@ -43,8 +43,27 @@ class Swift_Org_PoCTests: XCTestCase {
       // Test if there are items stored
       let fetchRequest = NSFetchRequest<Item>(entityName: "Item")
       let items = try moc!.fetch(fetchRequest)
-      XCTAssertEqual(items.count, 12)
+      XCTAssertEqual(items.count, 13)
       //      XCTAssertEqual(items.first?.heading, "Heading 2") // Can fail 🦄
+    } catch _ { XCTFail() }
+  }
+
+  func testKeywordUniqness() {
+    let bundle = Bundle(for: type(of: self))
+
+    // now parse the todo list
+    if let url = bundle.url(forResource: "TodoList", withExtension: "org") {
+      let orgParser = OrgFileParser(withManagedObjectContect: moc)
+      orgParser.parse(url)
+    } else {
+      XCTFail()
+    }
+
+    do {
+      // Test if there are items stored
+      let fetchRequest = NSFetchRequest<TodoState>(entityName: "TodoState")
+      let items = try moc!.fetch(fetchRequest)
+      XCTAssertEqual(items.count, 6)
     } catch _ { XCTFail() }
   }
 

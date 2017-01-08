@@ -30,15 +30,20 @@
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="tags" inverseEntity="Item" syncable="YES"/>
     </entity>
     <entity name="TodoState" representedClassName="TodoState" syncable="YES" codeGenerationType="class">
-        <attribute name="title" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="todostate" inverseEntity="Item" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="title"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="Item" positionX="-335" positionY="-174" width="128" height="193"/>
-        <element name="LogbookItem" positionX="-135" positionY="-111" width="128" height="73"/>
-        <element name="Priority" positionX="-506" positionY="-252" width="128" height="90"/>
-        <element name="Property" positionX="-522" positionY="-126" width="128" height="75"/>
-        <element name="Tag" positionX="-522" positionY="-18" width="128" height="75"/>
-        <element name="TodoState" positionX="-513" positionY="105" width="128" height="73"/>
+        <element name="LogbookItem" positionX="-549" positionY="-217" width="128" height="73"/>
+        <element name="Priority" positionX="-549" positionY="-126" width="128" height="90"/>
+        <element name="Property" positionX="-549" positionY="-12" width="128" height="75"/>
+        <element name="Tag" positionX="-549" positionY="81" width="128" height="75"/>
+        <element name="TodoState" positionX="-549" positionY="171" width="128" height="73"/>
     </elements>
 </model>

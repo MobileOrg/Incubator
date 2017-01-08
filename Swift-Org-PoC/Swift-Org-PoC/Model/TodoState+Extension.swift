@@ -12,6 +12,10 @@ import CoreData
 extension TodoState {
   class func create(with title: String, in moc: NSManagedObjectContext) -> TodoState {
 
+    if let existingState = TodoState.with(title: title, in: moc) {
+      return existingState
+    }
+
     let todoState = NSEntityDescription.insertNewObject(forEntityName: NSStringFromClass(TodoState.self), into: moc) as! TodoState
     todoState.title = title
 

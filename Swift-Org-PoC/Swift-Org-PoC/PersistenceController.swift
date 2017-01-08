@@ -1,6 +1,5 @@
 //
 //  PersistenceController.swift
-//  AudaxSwiftPlay
 //
 //  Created by Mario Martelli on 04.01.17.
 //  Copyright © 2017 Mario Martelli. All rights reserved.
@@ -92,6 +91,7 @@ class PersistenceStack {
     }
     var managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
     managedObjectContext.persistentStoreCoordinator = coordinator
+    // managedObjectContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     return managedObjectContext
   }()
 
