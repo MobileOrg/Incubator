@@ -1,5 +1,5 @@
 //
-//  LogbookItem+Extension.swift
+//  DoneState+Extension.swift
 //  Swift-Org-PoC
 //
 //  Created by Mario Martelli on 08.01.17.
@@ -23,14 +23,28 @@
 import Foundation
 import CoreData
 
-extension LogbookItem {
-  class func create(from: Date?, to: Date?,  in moc: NSManagedObjectContext) -> LogbookItem {
+extension DoneState {
+  class func create(with title: String, in moc: NSManagedObjectContext) -> DoneState {
 
-    let logbookItem = NSEntityDescription.insertNewObject(forEntityName: NSStringFromClass(LogbookItem.self), into: moc) as! LogbookItem
+    if let existingState = DoneState.with(title: title, in: moc) {
+      return existingState
+    }
 
-    logbookItem.from = from as NSDate?
-    logbookItem.to = to as NSDate?
-    
-    return logbookItem
+    let doneState = NSEntityDescription.insertNewObject(forEntityName: NSStringFromClass(DoneState.self), into: moc) as! DoneState
+    doneState.title = title
+
+    return doneState
+  }
+
+  class func with(title: String, in moc: NSManagedObjectContext) -> DoneState? {
+    let fetchRequest = NSFetchRequest<DoneState>(entityName: "DoneState")
+    fetchRequest.predicate = NSPredicate (format: "title == %@", title)
+    do {
+      let todoKeywords = try moc.fetch(fetchRequest)
+      if let state = todoKeywords.first {
+        return state
+      }
+    } catch { }
+    return nil
   }
 }

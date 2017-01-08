@@ -19,6 +19,9 @@
 		7419FA501E1CD9D300F0EA45 /* TodoList.org in Resources */ = {isa = PBXBuildFile; fileRef = 7419FA4F1E1CD9D300F0EA45 /* TodoList.org */; };
 		7419FA571E22091000F0EA45 /* TodoState+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419FA561E22091000F0EA45 /* TodoState+Extension.swift */; };
 		7419FA5A1E220C9C00F0EA45 /* LogbookItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419FA591E220C9C00F0EA45 /* LogbookItem+Extension.swift */; };
+		7419FA5E1E22545000F0EA45 /* Note+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419FA5D1E22545000F0EA45 /* Note+Extension.swift */; };
+		7419FA601E22548D00F0EA45 /* DoneState+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419FA5F1E22548D00F0EA45 /* DoneState+Extension.swift */; };
+		7419FA661E2265D200F0EA45 /* Clock+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419FA651E2265D200F0EA45 /* Clock+Extension.swift */; };
 		B297A8829368C6B97C6C486E /* Pods_Swift_Org_PoC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 417B5A26C7360F5BE5D8DC97 /* Pods_Swift_Org_PoC.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +53,9 @@
 		7419FA4F1E1CD9D300F0EA45 /* TodoList.org */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TodoList.org; sourceTree = "<group>"; };
 		7419FA561E22091000F0EA45 /* TodoState+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TodoState+Extension.swift"; path = "Model/TodoState+Extension.swift"; sourceTree = "<group>"; };
 		7419FA591E220C9C00F0EA45 /* LogbookItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LogbookItem+Extension.swift"; path = "Model/LogbookItem+Extension.swift"; sourceTree = "<group>"; };
+		7419FA5D1E22545000F0EA45 /* Note+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Note+Extension.swift"; path = "Model/Note+Extension.swift"; sourceTree = "<group>"; };
+		7419FA5F1E22548D00F0EA45 /* DoneState+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DoneState+Extension.swift"; path = "Model/DoneState+Extension.swift"; sourceTree = "<group>"; };
+		7419FA651E2265D200F0EA45 /* Clock+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Clock+Extension.swift"; path = "Model/Clock+Extension.swift"; sourceTree = "<group>"; };
 		9EF0260E27C1E81CDBEFE5D0 /* Pods-Swift-Org-PoC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-Org-PoC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swift-Org-PoC/Pods-Swift-Org-PoC.debug.xcconfig"; sourceTree = "<group>"; };
 		EC84CBFBD7C02A78A7090EEB /* Pods-Swift-Org-PoC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-Org-PoC.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swift-Org-PoC/Pods-Swift-Org-PoC.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,7 +139,10 @@
 			isa = PBXGroup;
 			children = (
 				7419FA561E22091000F0EA45 /* TodoState+Extension.swift */,
+				7419FA651E2265D200F0EA45 /* Clock+Extension.swift */,
 				7419FA591E220C9C00F0EA45 /* LogbookItem+Extension.swift */,
+				7419FA5F1E22548D00F0EA45 /* DoneState+Extension.swift */,
+				7419FA5D1E22545000F0EA45 /* Note+Extension.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -304,6 +313,9 @@
 			files = (
 				7419FA481E1CD37A00F0EA45 /* PersistenceController.swift in Sources */,
 				7419FA4C1E1CD5D600F0EA45 /* Model.xcdatamodel in Sources */,
+				7419FA661E2265D200F0EA45 /* Clock+Extension.swift in Sources */,
+				7419FA5E1E22545000F0EA45 /* Note+Extension.swift in Sources */,
+				7419FA601E22548D00F0EA45 /* DoneState+Extension.swift in Sources */,
 				7419FA2A1E1CCCDF00F0EA45 /* ViewController.swift in Sources */,
 				7419FA4E1E1CD6B700F0EA45 /* OrgfileParser.swift in Sources */,
 				7419FA281E1CCCDF00F0EA45 /* AppDelegate.swift in Sources */,

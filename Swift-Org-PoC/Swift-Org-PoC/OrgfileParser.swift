@@ -59,12 +59,13 @@ struct OrgFileParser {
         let _ = TodoState.create(with: state, in: moc)
       }
       for state in doneStates {
-        let _ = TodoState.create(with: state, in: moc)
+        let _ = DoneState.create(with: state, in: moc)
       }
     }
 
     // Get document related TodoStates
-    // FIXME: these should be stored separately!
+    // TODO: should these be stored separately?
+    // https://github.com/MobileOrg/mobileorg/issues/105
     if document.todos.count == 2,
       let todoStates = document.todos.first,
       let doneStates = document.todos.last {
@@ -74,7 +75,7 @@ struct OrgFileParser {
         let _ = TodoState.create(with: state, in: moc)
       }
       for state in doneStates {
-        let _ = TodoState.create(with: state, in: moc)
+        let _ = DoneState.create(with: state, in: moc)
       }
     }
 
@@ -94,7 +95,6 @@ struct OrgFileParser {
     }
   }
 
-
   /// Parse Section
   /// Section could be of type Section or Paragraph
   /// - Parameters:
@@ -103,7 +103,6 @@ struct OrgFileParser {
   func parse(section: Section, parent: Item?) {
     let entity = NSEntityDescription.entity(forEntityName: "Item", in: moc)
     let item = NSManagedObject(entity: entity!, insertInto: moc) as! Item
-
 
     // Set Todo Keyword if any
     if let todoState = section.keyword {
@@ -120,17 +119,15 @@ struct OrgFileParser {
     for section in section.content where section is Drawer {
       if let drawer = section as? Drawer {
 
-        // Logbook Entries
-        // FIXME: Logbook Entries should be stored as FromDate - ToDate in model for date logs
+        // FIXME: User could have used another name for LOGBOOK
+        //        Setting needed?
         if drawer.name == "LOGBOOK" {
-          for log in drawer.content {
-            let logEntry = LogbookItem.create(with: log, in: moc)
-            logEntry.item = item
+          if let log = scanLogbook(drawer) {
+            log.item = item
           }
         }
       }
     }
-
 
     // Bodytext is delivered as seperate paragraphs
     for section in section.content where section is Paragraph {
@@ -146,5 +143,40 @@ struct OrgFileParser {
     for section in section.content where section is Section {
       parse(section: section as! Section, parent: item)
     }
+  }
+
+  func scanLogbook(_ drawer: Drawer) -> LogbookItem? {
+    for entry in drawer.content {
+      //      var entry: NSString = entry
+      var line: NSString?
+      let scanner = Scanner(string: entry)
+      scanner.charactersToBeSkipped = CharacterSet.whitespaces
+
+      // It's a clock entry
+      if scanner.scanString("CLOCK", into: &line) {
+        var year = 0, month = 0, day = 0
+        var minute = 0, hour = 0
+        scanner.charactersToBeSkipped?.formUnion(CharacterSet.punctuationCharacters)
+        scanner.charactersToBeSkipped?.formUnion(CharacterSet.letters)
+
+        // Date entries
+        var log:[Date] = []
+        while scanner.scanInt(&year) && scanner.scanInt(&month),
+          scanner.scanInt(&day) && scanner.scanInt(&hour),
+          scanner.scanInt(&minute) {
+
+            let cal = Calendar(identifier: Calendar.Identifier.gregorian)
+            let datecomp = DateComponents(calendar: cal, timeZone: nil, era: nil, year: year, month: month, day: day, hour: hour, minute: minute, second: nil, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
+            if let from = cal.date(from: datecomp) {
+              log.append(from)
+            }
+        }
+        if log.count == 2 {
+          let logEntry = LogbookItem.create(from: log.first, to: log.last, in: moc)
+          return logEntry
+        }
+      }
+    }
+    return nil
   }
 }

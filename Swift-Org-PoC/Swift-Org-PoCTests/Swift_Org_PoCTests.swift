@@ -28,6 +28,39 @@ class Swift_Org_PoCTests: XCTestCase {
 
   var moc:NSManagedObjectContext!
 
+  func testLogEntry() {
+
+    // FIXME: Duplicate code -> setup()
+    let bundle = Bundle(for: type(of: self))
+    if let url = bundle.url(forResource: "TodoList", withExtension: "org") {
+      let orgParser = OrgFileParser(withManagedObjectContect: moc)
+      orgParser.parse(url)
+    } else {
+      XCTFail()
+    }
+
+    do {
+      let fetchRequest = NSFetchRequest<Item>(entityName: "Item")
+      fetchRequest.predicate = NSPredicate(format: "heading = %@", "on Level 1.1.1.5")
+      let items = try moc!.fetch(fetchRequest)
+
+      for item in items {
+        if let log = item.log?.allObjects as? [LogbookItem],
+          let start = log.first?.from {
+
+          let dateFormatter = DateFormatter()
+          dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
+          let date = dateFormatter.date(from: "2016-12-19 16:13:00 +0000")
+          XCTAssertEqual(start as Date, date)
+        }
+        else {
+          XCTFail()
+        }
+      }
+    } catch _ { XCTFail() }
+  }
+
+
   func testReadFile() {
     let bundle = Bundle(for: type(of: self))
 
@@ -63,7 +96,12 @@ class Swift_Org_PoCTests: XCTestCase {
       // Test if there are items stored
       let fetchRequest = NSFetchRequest<TodoState>(entityName: "TodoState")
       let items = try moc!.fetch(fetchRequest)
-      XCTAssertEqual(items.count, 6)
+      XCTAssertEqual(items.count, 3)
+
+      let fetchRequest2 = NSFetchRequest<DoneState>(entityName: "DoneState")
+      let items2 = try moc!.fetch(fetchRequest2)
+      XCTAssertEqual(items2.count, 3)
+
     } catch _ { XCTFail() }
   }
 

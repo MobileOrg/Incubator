@@ -1,5 +1,5 @@
 //
-//  LogbookItem+Extension.swift
+//  Clock+Extension.swift
 //  Swift-Org-PoC
 //
 //  Created by Mario Martelli on 08.01.17.
@@ -23,14 +23,14 @@
 import Foundation
 import CoreData
 
-extension LogbookItem {
-  class func create(from: Date?, to: Date?,  in moc: NSManagedObjectContext) -> LogbookItem {
+extension Clock {
+  class func create(from: NSDate,to: NSDate,in moc: NSManagedObjectContext) -> Clock {
 
-    let logbookItem = NSEntityDescription.insertNewObject(forEntityName: NSStringFromClass(LogbookItem.self), into: moc) as! LogbookItem
+    let clock = NSEntityDescription.insertNewObject(forEntityName: NSStringFromClass(Clock.self), into: moc) as! Clock
 
-    logbookItem.from = from as NSDate?
-    logbookItem.to = to as NSDate?
-    
-    return logbookItem
+    clock.from = from
+    clock.to = to
+
+    return clock
   }
 }

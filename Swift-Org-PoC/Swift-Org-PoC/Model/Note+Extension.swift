@@ -1,5 +1,5 @@
 //
-//  LogbookItem+Extension.swift
+//  Note+Extension.swift
 //  Swift-Org-PoC
 //
 //  Created by Mario Martelli on 08.01.17.
@@ -23,14 +23,14 @@
 import Foundation
 import CoreData
 
-extension LogbookItem {
-  class func create(from: Date?, to: Date?,  in moc: NSManagedObjectContext) -> LogbookItem {
+extension Note {
+  class func create(from created: NSDate, with content: String, in moc: NSManagedObjectContext) -> Note {
 
-    let logbookItem = NSEntityDescription.insertNewObject(forEntityName: NSStringFromClass(LogbookItem.self), into: moc) as! LogbookItem
+    let note = NSEntityDescription.insertNewObject(forEntityName: NSStringFromClass(Note.self), into: moc) as! Note
 
-    logbookItem.from = from as NSDate?
-    logbookItem.to = to as NSDate?
-    
-    return logbookItem
+    note.content = content
+    note.created = created
+
+    return note
   }
 }
