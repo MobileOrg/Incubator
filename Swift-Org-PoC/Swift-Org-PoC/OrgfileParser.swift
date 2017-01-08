@@ -49,19 +49,18 @@ struct OrgFileParser {
   func parse(document: OrgDocument) {
 
     // Get default TodoStates
-    let entity = NSEntityDescription.entity(forEntityName: "TodoState", in: moc)
+    // let entity = NSEntityDescription.entity(forEntityName: "TodoState", in: moc)
+    //    let et = TodoState.cra
     if document.defaultTodos.count == 2,
       let todoStates = document.defaultTodos.first,
       let doneStates = document.defaultTodos.last {
 
       // FIXME: Could make sense to diverse todo and done states in model
       for state in todoStates {
-        let todoState = NSManagedObject(entity: entity!, insertInto: moc) as! TodoState
-        todoState.title = state
+        let _ = TodoState.create(with: state, in: moc)
       }
       for state in doneStates {
-        let doneState =  NSManagedObject(entity: entity!, insertInto: moc) as! TodoState
-        doneState.title = state
+        let _ = TodoState.create(with: state, in: moc)
       }
     }
 
@@ -73,12 +72,10 @@ struct OrgFileParser {
 
       // FIXME: Could make sense to diverse todo and done states in model
       for state in todoStates {
-        let todoState = NSManagedObject(entity: entity!, insertInto: moc) as! TodoState
-        todoState.title = state
+        let _ = TodoState.create(with: state, in: moc)
       }
       for state in doneStates {
-        let doneState =  NSManagedObject(entity: entity!, insertInto: moc) as! TodoState
-        doneState.title = state
+        let _ = TodoState.create(with: state, in: moc)
       }
     }
 
@@ -111,16 +108,8 @@ struct OrgFileParser {
 
     // Set Todo Keyword if any
     if let todoState = section.keyword {
-      let fetchRequest = NSFetchRequest<TodoState>(entityName: "TodoState")
-      fetchRequest.predicate = NSPredicate (format: "title == %@", todoState)
-      do {
-        let todoKeywords = try moc!.fetch(fetchRequest)
-        if let state = todoKeywords.first {
-          item.todostate = state
-        }
-      } catch { }
+      item.todostate = TodoState.with(title: todoState, in: moc)
     }
-
 
     // Link to parent
     item.parent = parent
@@ -136,9 +125,7 @@ struct OrgFileParser {
         // FIXME: Logbook Entries should be stored as FromDate - ToDate in model for date logs
         if drawer.name == "LOGBOOK" {
           for log in drawer.content {
-            let entity = NSEntityDescription.entity(forEntityName: "LogbookItem", in: moc)
-            let logEntry = NSManagedObject(entity: entity!, insertInto: moc) as! LogbookItem
-            logEntry.state = log
+            let logEntry = LogbookItem.create(with: log, in: moc)
             logEntry.item = item
           }
         }

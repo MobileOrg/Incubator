@@ -17,6 +17,8 @@
 		7419FA4C1E1CD5D600F0EA45 /* Model.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 7419FA4B1E1CD5D600F0EA45 /* Model.xcdatamodel */; };
 		7419FA4E1E1CD6B700F0EA45 /* OrgfileParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419FA4D1E1CD6B700F0EA45 /* OrgfileParser.swift */; };
 		7419FA501E1CD9D300F0EA45 /* TodoList.org in Resources */ = {isa = PBXBuildFile; fileRef = 7419FA4F1E1CD9D300F0EA45 /* TodoList.org */; };
+		7419FA571E22091000F0EA45 /* TodoState+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419FA561E22091000F0EA45 /* TodoState+Extension.swift */; };
+		7419FA5A1E220C9C00F0EA45 /* LogbookItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419FA591E220C9C00F0EA45 /* LogbookItem+Extension.swift */; };
 		B297A8829368C6B97C6C486E /* Pods_Swift_Org_PoC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 417B5A26C7360F5BE5D8DC97 /* Pods_Swift_Org_PoC.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +48,8 @@
 		7419FA4B1E1CD5D600F0EA45 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		7419FA4D1E1CD6B700F0EA45 /* OrgfileParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrgfileParser.swift; sourceTree = "<group>"; };
 		7419FA4F1E1CD9D300F0EA45 /* TodoList.org */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TodoList.org; sourceTree = "<group>"; };
+		7419FA561E22091000F0EA45 /* TodoState+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TodoState+Extension.swift"; path = "Model/TodoState+Extension.swift"; sourceTree = "<group>"; };
+		7419FA591E220C9C00F0EA45 /* LogbookItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LogbookItem+Extension.swift"; path = "Model/LogbookItem+Extension.swift"; sourceTree = "<group>"; };
 		9EF0260E27C1E81CDBEFE5D0 /* Pods-Swift-Org-PoC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-Org-PoC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swift-Org-PoC/Pods-Swift-Org-PoC.debug.xcconfig"; sourceTree = "<group>"; };
 		EC84CBFBD7C02A78A7090EEB /* Pods-Swift-Org-PoC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-Org-PoC.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swift-Org-PoC/Pods-Swift-Org-PoC.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,6 +105,7 @@
 		7419FA261E1CCCDF00F0EA45 /* Swift-Org-PoC */ = {
 			isa = PBXGroup;
 			children = (
+				7419FA581E22092100F0EA45 /* Model */,
 				7419FA271E1CCCDF00F0EA45 /* AppDelegate.swift */,
 				7419FA4D1E1CD6B700F0EA45 /* OrgfileParser.swift */,
 				7419FA291E1CCCDF00F0EA45 /* ViewController.swift */,
@@ -122,6 +127,15 @@
 				7419FA3E1E1CCCDF00F0EA45 /* Info.plist */,
 			);
 			path = "Swift-Org-PoCTests";
+			sourceTree = "<group>";
+		};
+		7419FA581E22092100F0EA45 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7419FA561E22091000F0EA45 /* TodoState+Extension.swift */,
+				7419FA591E220C9C00F0EA45 /* LogbookItem+Extension.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		DB8D81DD664B86C2CB7A0170 /* Frameworks */ = {
@@ -293,6 +307,8 @@
 				7419FA2A1E1CCCDF00F0EA45 /* ViewController.swift in Sources */,
 				7419FA4E1E1CD6B700F0EA45 /* OrgfileParser.swift in Sources */,
 				7419FA281E1CCCDF00F0EA45 /* AppDelegate.swift in Sources */,
+				7419FA5A1E220C9C00F0EA45 /* LogbookItem+Extension.swift in Sources */,
+				7419FA571E22091000F0EA45 /* TodoState+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
