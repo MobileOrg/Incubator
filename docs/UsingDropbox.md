@@ -10,7 +10,6 @@ start to finish.
 To get started with MobileOrg + Dropbox:
 
 - You must first setup an account on http://www.dropbox.com
-
 - Open MobileOrg, go to Settings, choose the Dropbox button at the
   top. Enter your email address and password, then click ‘Log in to
   Dropbox’.
@@ -36,16 +35,16 @@ To get started with MobileOrg + Dropbox:
   then click the Sync button in the upper right.
 
 After capturing notes or making changes on the device to your Org
-files, be sure to sync in MobileOrg. Then run org-mobile-pull from
+files, be sure to sync in MobileOrg. Then run `org-mobile-pull` from
 Emacs to integrate your changes. After integrating, you can run
-org-mobile-push to make sure MobileOrg has access to the latest
+`org-mobile-push` to make sure MobileOrg has access to the latest
 version of your files.
 
 _NOTE:_ If you already had a MobileOrg directory in your
-~/Dropbox/Apps, a new folder will be created like MobileOrg (1). You
-should rename the newly created MobileOrg (1) folder to something that
+~/Dropbox/Apps, a new folder will be created like `MobileOrg (1)`. You
+should rename the newly created `MobileOrg (1)` folder to something that
 makes more sense, perhaps MobileOrg-staging before proceeding. Be sure
-your org-mobile-directory Emacs variable reflects this change.
+your `org-mobile-directory` Emacs variable reflects this change.
 
 _ANOTHER NOTE:_ There is a bug in the current version that requires
 you to press ‘Enter’ on the iPhone keyboard after entering your

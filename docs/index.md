@@ -1,6 +1,6 @@
 # User Documentation
 
-##Getting Started
+## Getting Started
 
 MobileOrg uses a WebDAV server or Dropbox to interact with your
 Org-files. It downloads Org files from the server, and uploads
@@ -14,17 +14,24 @@ find MobileOrg in the App Store on your device by searching for
 MobileOrg.
 
 [Using Dropbox](UsingDropbox.md)
+
 [Setup your WebDAV account](UsingWebDAV.md)
+
 [Syncing with MobileOrg](Syncing.md)
+
 [Browsing your Org files](Browsing.md)
+
 [Encryption](Encryption.md)
+
 [Further Reading](FurtherReading.md)
 
 Once you are comfortable browsing your Org files, take a look at the
 following documents to help you get even more from MobileOrg.
 
 [Mastering search](MasteringSearch.md)
+
 [Capturing notes](CapturingNotes.md)
+
 [Integrating with Org-mode](IntegratingWithOrgMode.md)
 
 ## Screencasts
